@@ -13,10 +13,12 @@
 <br>
 
 <p>
-  <strong>All Events Created:</strong>
-  <% @events.each do |event|%>
-    <%= events.name%>
-  <%end%>
+<% unless @events.blank? %>
+  <strong>All Events Created:</strong> 
+    <% @user.events.each do |event| %>
+      <%= events.name%>
+    <%end%>
+<%end%>
 </p>
 
 <%= link_to 'Back', new_user_path %>
