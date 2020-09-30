@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  #before_action :find_user
+
   def index
     @events = Event.all
    
@@ -22,18 +22,22 @@ class EventsController < ApplicationController
         format.html { redirect_to current_user, notice: 'event was successfully created.' }
       else
         format.html { render :new }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  def find_user
-    @user = User.find(:current_user)
-   
+  def destroy
+    @event = Event.find(params[:id])
+    if @event.present?
+      @event.destroy
+      redirect_to events_url, notice: 'Event deleted'
+    end
   end
+  
 
   private
-    
-    def event_params
-      params.require(:event).permit(:description)
-    end
+  def event_params
+    params.require(:event).permit(:description)
+  end
 end
