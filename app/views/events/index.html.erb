@@ -1,8 +1,13 @@
 <p>
-  <strong>All Events Created:</strong>
+  <% if current_user %>
+    <strong>All Events Created:</strong>
     <br>
     <% @events.each do |event| %>
       <%= event.description %>
       <br>
-    <%end%>
+    <%end%> 
+    <% else %>
+      <h3>Please Login or SignUp</h3>
+  <%end%>
+  
 </p>

@@ -8,8 +8,6 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user, notice: "Logged in!"
     else
-      #flash.now.alert = "Email or password is invalid"
-      #render "new"
       redirect_to login_path, notice: "Email is invalid"
     end
   end

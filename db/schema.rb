@@ -14,18 +14,18 @@ ActiveRecord::Schema.define(version: 2020_09_26_043133) do
 
   create_table "events", force: :cascade do |t|
     t.text "description"
-    t.integer "user_id"
+    t.integer "creator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    #t.integer "creator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    #t.index ["creator_id"], name: "index_users_on_creator_id"
   end
 
+  add_foreign_key "events", "users", column: "creator_id"
 end

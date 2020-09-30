@@ -1,2 +1,8 @@
-<h1></h1>
-<p><%= @user.creator %></p>
+<div>
+  <strong>Description:</strong>
+  <%= @event.description %>
+  <p>by <strong><%= @user.name %></strong></P>
+  
+</div>
+
+</p><%= link_to 'Back', events_path %>
