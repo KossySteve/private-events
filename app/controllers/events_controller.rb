@@ -1,26 +1,25 @@
 class EventsController < ApplicationController
-  before_action :find_user
+  #before_action :find_user
   def index
-    #@events = Event.all
-    @events = @user.events.all
-
+    @events = Event.all
+   
   end
 
   def show
-    #@events = Event.all
+    @events = current_user.events.find(params[:id])
+
+    
   end
 
   def new
-   
-    @event = @user.events.build
-  
+    @event = current_user.events.build
   end
 
   def create
-    @event = @user.events.build(event_params)
+    @event = current_user.events.build(event_params)
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @user, notice: 'event was successfully created.' }
+        format.html { redirect_to current_user, notice: 'event was successfully created.' }
       else
         format.html { render :new }
       end
@@ -28,10 +27,9 @@ class EventsController < ApplicationController
   end
 
   def find_user
-    @user = User.find(params[:user_id])
+    @user = User.find(:current_user)
+   
   end
-
- 
 
   private
     

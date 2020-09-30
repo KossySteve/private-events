@@ -2,7 +2,7 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @user.name %>
+  <%= current_user.name %>
 </p>
 
 <p>
@@ -10,15 +10,14 @@
   <%= @user.email %>
 </p>
 
-<br>
-
 <p>
-<% unless @events.blank? %>
-  <strong>All Events Created:</strong> 
+  <strong>My Events:</strong>
+    <br>
     <% @user.events.each do |event| %>
-      <%= events.name%>
+      <%= event.description %>
+      <br>
     <%end%>
-<%end%>
 </p>
 
-<%= link_to 'Back', new_user_path %>
+<%= link_to 'Back', new_user_path %><br>
+<%= link_to 'Create new event', new_event_path %>
