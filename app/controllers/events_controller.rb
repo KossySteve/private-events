@@ -1,8 +1,6 @@
 class EventsController < ApplicationController
-
   def index
     @events = Event.all
-    
   end
 
   def show
@@ -29,15 +27,15 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
-    if @event.present?
-      @event.destroy
-      redirect_to events_url, notice: 'Event deleted'
-    end
+    return if @event.blank?
+
+    @event.destroy
+    redirect_to events_url, notice: 'Event deleted'
   end
-  
 
   private
+
   def event_params
-    params.require(:event).permit(:description)
+    params.require(:event).permit(:description, :date)
   end
 end

@@ -2,7 +2,8 @@ class UsersController < ApplicationController
  
   def show
     @user = User.find(params[:id])
-  
+    @prev_events = @user.previous_event
+    @upcoming_events = @user.upcoming_event
   end
 
  
@@ -13,7 +14,6 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       end
     end
   end
-
+  
 
   private
     

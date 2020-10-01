@@ -11,14 +11,21 @@
   </head>
 
   <body>
+
     <nav>
+      
       <% if current_user %>
         Logged in as <%= current_user.email %>.
-        <%= link_to "Log Out", session_path("current"), method: "delete" %>
+        <li><%= link_to 'Home', :root %></li>
+        <li><%= link_to 'All Events', events_path %></li>  
+        <li><%= link_to 'My Profile', "/users/#{current_user.id}" %></li>
+        <li><%= link_to 'Create event', new_event_path %></li>
+        <li><%= link_to "Log Out", session_path("current"), method: "delete" %></li>
       <% else %>
         <%= link_to 'Sign up', signup_path%> or
         <%= link_to 'Log in', login_path%>
       <% end %>
+       
     </nav>
     <br><br>
     

@@ -1,0 +1,8 @@
+<ul>
+  <% @upcoming_events.each do |event| %>
+   <%=event.description%> </li>
+        <td><%= link_to 'Show', event %></td>
+    <br>
+  <% end %>
+</ul>
+

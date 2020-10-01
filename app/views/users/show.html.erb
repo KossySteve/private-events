@@ -11,12 +11,24 @@
 </p>
 
 <p>
-  <strong>My Events:</strong>
+  <strong>Created Events:</strong>
     <br>
+    <ul>
     <% @user.events.each do |event| %>
       <%= event.description %>
+      <%= link_to 'Show', event %>
       <br>
     <%end%>
+    </ul>
+</p>
+<p>
+<strong> Upcoming Events: </strong>
+<%= render "upcoming"%>
+</p>
+<p>
+<strong> Past Events: </strong>
+<%= render "past"%>
+
 </p>
 
 

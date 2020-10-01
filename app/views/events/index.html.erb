@@ -4,7 +4,8 @@
     <br>
     <% @events.each do |event| %>
       <%= event.description %>
-      <%= link_to 'attend Event?', event %>
+     <td><%= link_to 'Show', event %></td>
+        
       <br>
     <%end%> 
     <% else %>
