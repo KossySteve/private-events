@@ -16,6 +16,8 @@
     <ul>
     <% @user.events.each do |event| %>
       <%= event.description %>
+      <br>
+      <%= event.date %>
       <%= link_to 'Show', event %>
       <br>
     <%end%>

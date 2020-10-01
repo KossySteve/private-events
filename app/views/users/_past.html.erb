@@ -1,6 +1,8 @@
 <ul>
   <% @prev_events.each do |event| %>
-   <%= event.description %> 
+   <%= event.description %>
+   <br> 
+    <%= event.date %> 
     <td><%= link_to 'Show', event %></td>
    <br>
   <% end %>

@@ -6,12 +6,11 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'Please enter a valid email' }
 
-    def upcoming_event
-        events.where('date >= ?', Date.today)
-    end
+  def upcoming_event
+    events.where('date >= ?', Date.today)
+  end
 
-    def previous_event
-        events.where('date < ?', Date.today)
-    end
-
+  def previous_event
+    events.where('date < ?', Date.today)
+  end
 end
