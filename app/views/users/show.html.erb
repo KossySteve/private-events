@@ -19,14 +19,7 @@
     <%end%>
 </p>
 
-<p>
-  <strong>My Attending Events:</strong>
-    <br>
-    <% @user.events.each do |event| %>
-      <%= event.description %>
-      <br>
-    <%end%>
-</p>
+
 
 <%= link_to 'Back', new_user_path %><br>
 <%= link_to 'Create new event', new_event_path %>

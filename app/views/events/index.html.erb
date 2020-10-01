@@ -4,10 +4,11 @@
     <br>
     <% @events.each do |event| %>
       <%= event.description %>
-      <br>  
+      <%= link_to 'attend Event?', event %>
+      <br>
     <%end%> 
     <% else %>
       <h3>Please Login or SignUp</h3>
   <%end%>
-  
+
 </p>
