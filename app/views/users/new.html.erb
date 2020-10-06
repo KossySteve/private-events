@@ -21,6 +21,13 @@
     <%= f.label :email %><br />
     <%= f.email_field :email %>
   </div>
+  <div class="field">
+  <%= f.label :email %><br />
+  <%= f.label :email, "Yes", :value => "Yes"  %>
+  <%= f.radio_button :email, true%>
+  <%= f.label :email, "No", :value => "No" %>
+  <%= f.radio_button :email, false, :checked => true %>
+</div>
  
   <div class="actions"><%= f.submit "Sign Up" %></div>
 <% end %>

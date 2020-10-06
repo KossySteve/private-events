@@ -2,7 +2,10 @@
   <strong><%= @event.description %></strong>
   
   <p>by <strong><%= @user.email%></strong></p> 
-  
 </div>
 
+<span>If you would like to attend enter your name here <%= render 'attendances/form' %> </span>
+<br>
+<h3>List of Attendees</h3>
+<%= render 'attendances/attendance' %>
 <%= link_to 'Back', events_path %>

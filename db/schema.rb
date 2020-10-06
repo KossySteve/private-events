@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_10_01_011828) do
     t.integer "attended_event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "present"
+    t.string "name"
     t.index ["attended_event_id"], name: "index_attendances_on_attended_event_id"
     t.index ["attendee_id"], name: "index_attendances_on_attendee_id"
   end

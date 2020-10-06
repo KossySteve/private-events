@@ -1,9 +1,10 @@
 <ul>
   <% @prev_events.each do |event| %>
    <%= event.description %>
-   <br> 
-    <%= event.date %> 
-    <td><%= link_to 'Show', event %></td>
-   <br>
+   <p> 
+    <%= event.date %>
+    
+    <%= link_to 'Show', event %>
+   </p>
   <% end %>
 </ul>

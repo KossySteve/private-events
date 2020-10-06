@@ -1,0 +1,11 @@
+<%= form_for [@event, @event.attendances.build] do |f| %>
+    <div>
+      <b><%= f.label :name %></b>
+      <div>
+        <%= f.text_field :name %>
+      </div>
+    </div><br>
+    <div>
+        <%= f.button :submit=>'post' %>
+    </div>
+<%end%>
