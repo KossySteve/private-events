@@ -22,7 +22,6 @@ class EventsController < ApplicationController
   def create
     @user = current_user
     @event = @user.events.build(event_params)
-    #@event.user.id = current_user.id
     respond_to do |format|
       if @event.save
         @user.events << @event

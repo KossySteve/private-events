@@ -3,9 +3,7 @@ class UsersController < ApplicationController
     @user = current_user
     @events = @user.events
     @upcoming_events = @events.where('date >= ?', Date.today)
-    @prev_events = @events.where('date < ?', Date.today)
-    
-    
+    @prev_events = @events.where('date < ?', Date.today) 
   end
 
   def new
