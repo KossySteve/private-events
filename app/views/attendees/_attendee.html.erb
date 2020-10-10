@@ -1,5 +1,5 @@
 <div>
- <% if current_user.email == attendee.email %>
-   <%= current_user.name %>
+ <% if User.find_by(email: "#{attendee.email}") %>
+   <%= User.find_by(email: "#{attendee.email}").name %>
  <% end %>
 </div>
