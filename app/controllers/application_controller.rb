@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to login_url, alert: 'Not authorized' if current_user.nil?
   end
+
+  def check_attendee
+    current_user.email == attendee.email
+  end
+  
 end

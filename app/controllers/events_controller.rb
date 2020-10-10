@@ -1,24 +1,31 @@
 class EventsController < ApplicationController
   def index
     @events = Event.all
-    @prev_events = @events.where('date >= ?', Date.today)
-    @upcoming_events = @events.where('date < ?', Date.today)
+    @upcoming_events = @events.where('date >= ?', Date.today)
+    @prev_events = @events.where('date < ?', Date.today)
   end
+
 
   def show
     @event = Event.find(params[:id])
-    @user = User.find(@event.creator_id)
+    @attendance = Attendance.find_by! event_id: @event.id
+    @user = User.find(@attendance.user_id)
+
   end
 
   def new
     @event = current_user.events.build
   end
 
+ 
+
   def create
-    @event = current_user.events.build(event_params)
-    @event.creator_id = current_user.id
+    @user = current_user
+    @event = @user.events.build(event_params)
+    #@event.user.id = current_user.id
     respond_to do |format|
       if @event.save
+        @user.events << @event
         format.html { redirect_to current_user, notice: 'event was successfully created.' }
       else
         format.html { render :new }
