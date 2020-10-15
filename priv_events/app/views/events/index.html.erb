@@ -1,0 +1,17 @@
+<div>
+  <% if current_user %>
+    <p id="notice"><%= notice %></p>
+
+    <p>
+      <strong> Upcoming Events: </strong>
+      <%= render "upcoming"%>
+    </p>
+    <p>
+      <strong> Past Events: </strong>
+      <%= render "past"%>
+    </p>
+    
+  <% else %>
+    <h3>Please Login or SignUp</h3>
+  <%end%>
+</div>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PrivateEvents</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+   
+  </head>
+
+  <body>
+
+    <nav>
+      
+      <% if current_user %>
+        Logged in as <%= current_user.email %>.
+        <li><%= link_to 'Home', :root %></li>
+        <li><%= link_to 'All Events', events_path %></li>  
+        <li><%= link_to 'My Profile', "/users/#{current_user.id}" %></li>
+        <li><%= link_to 'Create event', new_event_path %></li>
+        <li><%= link_to "Log Out", session_path("current"), method: "delete" %></li>
+      <% else %>
+        <%= link_to 'Sign up', signup_path%> or
+        <%= link_to 'Log in', login_path%>
+      <% end %>
+       
+    </nav>
+    <br><br>
+    
+    
+    <%= yield %>
+    
+  </body>
+</html>

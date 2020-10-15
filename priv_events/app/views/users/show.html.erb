@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= current_user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>My Events:</strong>
+    <br>
+    <ul>
+    <% @user.events.each do |event| %>
+      <%= event.description %>
+      <br>
+      <%= event.date %>
+      <%= link_to 'Show', event %>
+      <br>
+    <%end%>
+    </ul>
+</p>
+<p>
+<strong> Upcoming Events: </strong>
+<%= render "upcoming"%>
+</p>
+<p>
+<strong> Past Events: </strong>
+<%= render "past"%>
+
+</p>
+
+
+
+<%= link_to 'Back', new_user_path %><br>
+<%= link_to 'Create new event', new_event_path %>

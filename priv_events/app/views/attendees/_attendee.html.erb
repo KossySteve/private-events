@@ -1,0 +1,5 @@
+<div>
+ <% if User.find_by(email: "#{attendee.email}") and attendee.email != @user.email %>
+   <%= User.find_by(email: "#{attendee.email}").name %>
+ <% end %>
+</div>
