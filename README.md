@@ -4,14 +4,14 @@ This is the Private-Events project where users are able to create events and cho
 ## Restrictions
 *Logged In*
 
-Only registered and logged in users can create events. They are refered to as *Creators*.
+Only registered and logged in users can create events. 
 
 
-Only registered users can be invited to the event by Creators. They are refered to as *Attendees*
+Only registered users attend. They are refered to as *Attendees*
 
 ## Getting Started
 - Fork the repository and create a local one on your computer
-- Move to the repository inside the command line using `cd` and the path to the file
+- Move to the repository inside the command line using `cd` and the path to the file 
 - Run `$ gem install bundler`
 - Run:`$ bundle install`
 - Run `$ rails db:migrate`
