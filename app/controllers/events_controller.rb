@@ -1,31 +1,25 @@
 class EventsController < ApplicationController
-  def index
-    @events = Event.all
-    @upcoming_events = @events.where('date >= ?', Date.today)
-    @prev_events = @events.where('date < ?', Date.today)
+  def new
+    @event = Event.new
   end
-
 
   def show
     @event = Event.find(params[:id])
-    @attendance = Attendance.find_by! event_id: @event.id
-    @user = User.find(@attendance.user_id)
-
   end
 
-  def new
-    @event = current_user.events.build
+  def index
+    @events = Event.all
+    @upcoming = Event.upcoming.pluck(:name, :date, :location, :description, :id)
+    @past = Event.past.pluck(:name, :date, :location, :description, :id)
   end
-
- 
 
   def create
-    @user = current_user
-    @event = @user.events.build(event_params)
+    @event = Event.new(event_params)
+    @event.creator_id = current_user.id
     respond_to do |format|
       if @event.save
-        @user.events << @event
-        format.html { redirect_to current_user, notice: 'event was successfully created.' }
+        format.html { redirect_to events_path, notice: 'Event was successfully created.' }
+        # format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -33,17 +27,15 @@ class EventsController < ApplicationController
     end
   end
 
-  def destroy
-    @event = Event.find(params[:id])
-    return if @event.blank?
-
-    @event.destroy
-    redirect_to events_url, notice: 'Event deleted'
+  def invite
+    invitee = User.find_by(username: params[:username])
+    UserEvent.create(attendee_id: invitee.id, attended_event_id: params[:event_id]) unless invitee.nil?
+    redirect_to "/events/#{params[:event_id]}"
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:description, :date)
+    params.require(:event).permit(:name, :location, :date, :description)
   end
 end

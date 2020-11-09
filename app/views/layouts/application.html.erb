@@ -5,32 +5,30 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-   
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
 
-    <nav>
-      
-      <% if current_user %>
-        Logged in as <%= current_user.email %>.
-        <li><%= link_to 'Home', :root %></li>
-        <li><%= link_to 'All Events', events_path %></li>  
+  <nav>
+    <ul>
+      <li><%= link_to 'Home', :root %></li>
+      <li><%= link_to 'All Events', events_path %></li>
+      <% if logged_in? %>
         <li><%= link_to 'My Profile', "/users/#{current_user.id}" %></li>
         <li><%= link_to 'Create event', new_event_path %></li>
-        <li><%= link_to "Log Out", session_path("current"), method: "delete" %></li>
-      <% else %>
-        <%= link_to 'Sign up', signup_path%> or
-        <%= link_to 'Log in', login_path%>
+        <li><%= link_to 'Logout', destroy_path, method: :post %></li>
       <% end %>
-       
-    </nav>
-    <br><br>
-    
-    
+
+    </ul>
+  </nav>
+
+  <% if logged_in? %>
+    <p>You are Logged In, <%= current_user.username %></p>
+  <%else%>
+    <p>Please log in</p>
+  <%end%>
     <%= yield %>
-    
   </body>
 </html>

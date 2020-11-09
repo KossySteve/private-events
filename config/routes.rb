@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
+  resources :users, only: [:new, :create, :show]
+  resources :events, only: [:show, :index, :create, :new]
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  get 'welcome', to: 'sessions#welcome'
+  post 'destroy', to: 'sessions#destroy'
+  post 'invite', to: 'events#invite'
 
-  get 'signup', to: 'users#new', as: 'signup'
-  get 'login', to: 'sessions#new', as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
-  root 'users#show'  
-  resources :users
-  resources :sessions
-  resources :events do
-    resources :attendees
-  end
-  
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'sessions#welcome'
 end
