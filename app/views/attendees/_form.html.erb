@@ -1,12 +1,10 @@
-<%= form_for [@event, @event.attendees.build] do |f| %>
-   
+<%= form_for [@event, @event.attendees.build] do |f| %>   
     <div>
       <b><% f.label :email %></b>
       <div>
         <%= f.email_field :email %>
     </div>
-    </div><br>
-   
+    </div><br>   
         <%= f.button :submit=>'event' %>
     </div>
 <%end%>
